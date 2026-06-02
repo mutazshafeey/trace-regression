@@ -12,6 +12,8 @@ learned feature sensitivity exponents and a native per-prediction
 confidence score.
 
 ## Repository structure
+
+```
 trace-regression/
 ├── cv_v2.py                 # TRACE cross-validation and core algorithm
 ├── benchmark_models.py      # All 10 baseline models with 5-fold CV
@@ -20,7 +22,7 @@ trace-regression/
 ├── figure1_audit.py         # Figure 1: Prediction audit trace
 ├── confidence_viz.py        # Confidence stratification figures
 └── requirements.txt         # Python dependencies
-
+```
 ## Requirements
 
 Python 3.8 or later. Install dependencies with:
