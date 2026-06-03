@@ -21,11 +21,11 @@ trace-regression/
 ├── cv_v2.py                 # TRACE core algorithm with 5-fold cross-validation
 ├── benchmark_models.py      # All 10 baseline models with 5-fold cross-validation
 ├── wilcoxon_test.py         # Corrected resampled t-test (Nadeau and Bengio 2003)
-├── pareto_mean_rank.py      # Figure 2: interpretability-performance Pareto frontier
-├── figure1_audit.py         # Figure 1: prediction-level audit trail (4 panels)
+├── pareto_mean_rank.py      # Interpretability-performance Pareto frontier figure
+├── figure1_audit.py         # Prediction-level audit trail figure (4 panels)
 ├── requirements.txt         # Python dependencies
 └── data/
-└── README.md            # Dataset download instructions
+└── README.md                # Dataset download instructions
 ```
 ## Requirements
 
@@ -83,7 +83,7 @@ python wilcoxon_test.py
 python pareto_mean_rank.py
 ```
 
-5. Generate Figure 1 audit trail (requires cv_v2.py session variables):
+5. Generate the audit trail figure (requires cv_v2.py session variables):
 ```bash
 python figure1_audit.py
 ```
