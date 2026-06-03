@@ -22,7 +22,7 @@ trace-regression/
 ├── benchmark_models.py      # All 10 baseline models with 5-fold cross-validation
 ├── wilcoxon_test.py         # Corrected resampled t-test (Nadeau and Bengio 2003)
 ├── pareto_mean_rank.py      # Interpretability-performance Pareto frontier figure
-├── figure_audit.py         # Prediction-level audit trail figure (4 panels)
+├── figure_audit.py          # Prediction-level audit trail figure (4 panels)
 ├── requirements.txt         # Python dependencies
 └── data/
 └── README.md                # Dataset download instructions
