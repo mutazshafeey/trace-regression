@@ -1,27 +1,31 @@
 # TRACE: Transparent Regression with Adaptive Confidence Estimation
 
-[![Paper](https://img.shields.io/badge/Nature_Machine_Intelligence-under_review-blue)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+Code repository for the paper:
+**TRACE: Transparent Regression with Adaptive Confidence Estimation**
+Submitted to *Nature Machine Intelligence*
+
+---
 
 ## Overview
 
-TRACE is an interpretable regression framework that operates directly 
-on unprocessed numerical data without preprocessing or normalization. 
-Every prediction is fully auditable through matched training instances, 
-learned feature sensitivity exponents and a native per-prediction 
-confidence score.
+TRACE is an interpretable regression framework that operates directly on unprocessed numerical data without preprocessing or normalization. Every prediction is fully auditable through matched training instances, learned feature sensitivity exponents and a native per-prediction confidence score that quantifies individual prediction reliability without post-hoc calibration.
+
+---
 
 ## Repository structure
 
 ```
 trace-regression/
-├── cv_v2.py                 # TRACE cross-validation and core algorithm
-├── benchmark_models.py      # All 10 baseline models with 5-fold CV
-├── wilcoxon_test.py         # Corrected resampled t-tests
-├── pareto_mean_rank.py      # Figure 2: Pareto frontier plot
-├── figure1_audit.py         # Figure 1: Prediction audit trace
-├── confidence_viz.py        # Confidence stratification figures
-└── requirements.txt         # Python dependencies
+├── cv_v2.py                 # TRACE core algorithm with 5-fold cross-validation
+├── benchmark_models.py      # All 10 baseline models with 5-fold cross-validation
+├── wilcoxon_test.py         # Corrected resampled t-test (Nadeau and Bengio 2003)
+├── pareto_mean_rank.py      # Figure 2: interpretability-performance Pareto frontier
+├── figure1_audit.py         # Figure 1: prediction-level audit trail (4 panels)
+├── requirements.txt         # Python dependencies
+└── data/
+└── README.md            # Dataset download instructions
 ```
 ## Requirements
 
@@ -31,39 +35,76 @@ Python 3.8 or later. Install dependencies with:
 pip install -r requirements.txt
 ```
 
+---
+
 ## Datasets
 
-All eight benchmark datasets are publicly available:
+All eight benchmark datasets are publicly available. No data files are included in this repository.
 
-- Friedman #2 and California Housing: `sklearn.datasets`
-- cpu_activity, Kin8nm, Protein: [OpenML CTR23](https://openml.org)
-- CCPP, Airfoil, Concrete: [UCI Machine Learning Repository](https://archive.ics.uci.edu)
+| Dataset | Source |
+|---------|--------|
+| Friedman #2, California Housing | `sklearn.datasets` |
+| cpu\_activity, Kin8nm, Protein | OpenML CTR23 |
+| CCPP, Airfoil, Concrete | UCI Machine Learning Repository |
+
+See `data/README.md` for full download instructions.
+
+---
 
 ## Reproducing results
 
-Run TRACE cross-validation on a dataset:
+All scripts use a generic settings block at the top. Set your dataset path and target column before running:
 
+```python
+FILE_CV    = "data/your_dataset.xlsx"  # or .csv
+SHEET_CV   = "Sheet1"
+TARGET_COL = "y"
+```
+
+**Run order:**
+
+1. Run TRACE cross-validation on a dataset:
 ```bash
 python cv_v2.py
 ```
 
-Run all baseline models:
-
+2. Run all baseline models under the same protocol:
 ```bash
 python benchmark_models.py
 ```
 
+3. Run statistical significance tests (requires steps 1 and 2 in the same session):
+```bash
+python wilcoxon_test.py
+```
+
+4. Generate the Pareto frontier figure (standalone):
+```bash
+python pareto_mean_rank.py
+```
+
+5. Generate Figure 1 audit trail (requires cv_v2.py session variables):
+```bash
+python figure1_audit.py
+```
+
+---
+
 ## Citation
 
 If you use this code please cite:
+
+```bibtex
 @misc{shafeey2025trace,
-author = {Shafeey, Mutaz},
-title  = {TRACE: Transparent Regression with Adaptive
-Confidence Estimation},
-year   = {2025},
-url    = {https://github.com/mutazshafeey/trace-regression}
+  author = {Shafeey, Mutaz},
+  title  = {TRACE: Transparent Regression with Adaptive Confidence Estimation},
+  year   = {2025},
+  url    = {https://github.com/mutazshafeey/trace-regression}
 }
+```
+
+---
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — see `LICENSE` for details.
