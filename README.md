@@ -85,7 +85,7 @@ python pareto_mean_rank.py
 
 5. Generate the audit trail figure (requires cv_v2.py session variables):
 ```bash
-python figure1_audit.py
+python figure_audit.py
 ```
 
 ---
